@@ -11,7 +11,7 @@ namespace Bloque_2.DTOs
 
         [Required(ErrorMessage = "El precio es obligatorio.")]
         [Range(typeof(decimal), "0.01", "79228162514264337593543950335",
-            ErrorMessage = "El precio debe ser mayor a 0.")]
+    ParseLimitsInInvariantCulture = true)]
         public decimal? Precio { get; set; }
 
         [Required(ErrorMessage = "La categoria es obligatoria.")]

@@ -1,14 +1,22 @@
+using Bloque_2.Interfaces;
+using Bloque_2.Repositories;
+using Bloque_2.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Registrar los controladores
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+// Configurar la inyección de dependencias
+builder.Services.AddScoped<IProductoRepository, ProductoRepositoryInMemory>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
+
+// Configurar OpenAPI
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el entorno de desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
