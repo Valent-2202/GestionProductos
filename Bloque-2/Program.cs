@@ -11,15 +11,17 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IProductoRepository, ProductoRepositoryInMemory>();
 builder.Services.AddScoped<IProductoService, ProductoService>();
 
-// Configurar OpenAPI
-builder.Services.AddOpenApi();
+// Configurar Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configurar el entorno de desarrollo
+// Habilitar Swagger en desarrollo
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
